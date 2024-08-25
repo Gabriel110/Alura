@@ -5,5 +5,6 @@ import java.time.LocalDate
 data class ShopResquest(
     val identifier: String,
     val status: String,
-    val dateShop: LocalDate
+    val dateShop: LocalDate,
+    val items: List<ShopItemRequest>
 )

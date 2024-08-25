@@ -1,26 +1,49 @@
 package br.com.gabriel.shop.application.mapper
 
+import br.com.gabriel.shop.application.dto.ShopItemRequest
+import br.com.gabriel.shop.application.dto.ShopItemResponse
 import br.com.gabriel.shop.application.dto.ShopResponse
 import br.com.gabriel.shop.application.dto.ShopResquest
 import br.com.gabriel.shop.domain.model.Shop
-import org.springframework.stereotype.Component
+import br.com.gabriel.shop.domain.model.ShopItem
 
-@Component
-class ShopMapper {
+fun ShopItemRequest.toModel() = ShopItem(
+    shop = this.shop,
+    price = this.price,
+    productIdentifier = this.productIdentifier,
+    amount = this.amount
+)
 
-    fun toDTO(shop: Shop): ShopResponse {
-        return ShopResponse(
-            identifier = shop.identifier,
-            status = shop.status,
-            dateShop = shop.dateShop
-        )
-    }
+fun ShopResquest.toModel() = Shop(
+    items = this.items.map { it.toModel() },
+    status = this.status,
+    dateShop = this.dateShop,
+    identifier = this.identifier
+)
 
-    fun toModel(shopDTO: ShopResquest): Shop {
-        return Shop(
-            identifier = shopDTO.identifier,
-            status = shopDTO.status,
-            dateShop = shopDTO.dateShop
-        )
-    }
-}
+fun ShopItem.toRequest() = ShopItemRequest(
+    price = this.price,
+    amount = this.amount,
+    productIdentifier = this.productIdentifier,
+    shop = this.shop
+)
+
+fun ShopItem.toResponse() = ShopItemResponse(
+    amount = this.amount,
+    price = this.price,
+    productIdentifier = this.productIdentifier
+)
+
+fun Shop.toRequest() = ShopResquest(
+    identifier = this.identifier,
+    status = this.status,
+    dateShop = this.dateShop,
+    items = this.items.map { it.toRequest() }
+)
+
+fun Shop.toResponse() = ShopResponse(
+    identifier = this.identifier,
+    status = this.status,
+    dateShop = this.dateShop,
+    itens = this.items.map { it.toResponse() }
+)

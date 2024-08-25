@@ -31,7 +31,8 @@ fun ShopItem.toRequest() = ShopItemRequest(
 fun ShopItem.toResponse() = ShopItemResponse(
     amount = this.amount,
     price = this.price,
-    productIdentifier = this.productIdentifier
+    productIdentifier = this.productIdentifier,
+    id = this.id!!,
 )
 
 fun Shop.toRequest() = ShopResquest(

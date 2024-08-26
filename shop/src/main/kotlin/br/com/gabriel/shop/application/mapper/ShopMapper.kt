@@ -39,10 +39,6 @@ fun ShopItem.toResponse() = ShopItemResponse(
     id = this.id!!,
 )
 
-fun Shop.toRequest() = ShopResquest(
-    items = this.items.map { it.toRequest() }
-)
-
 fun Shop.toResponse() = ShopResponse(
     identifier = this.identifier,
     status = this.status,

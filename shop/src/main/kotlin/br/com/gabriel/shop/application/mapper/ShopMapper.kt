@@ -11,7 +11,7 @@ import java.util.UUID
 
 fun ShopResquest.toModel() = Shop(
     identifier = UUID.randomUUID().toString(),
-    status = "PENDING",
+    status = Shop.Status.PENDING,
     dateShop = LocalDate.now(),
     items = emptyList()
 )

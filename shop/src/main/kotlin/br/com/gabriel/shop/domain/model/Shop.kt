@@ -16,9 +16,16 @@ data class Shop(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     val identifier: String,
-    val status: String,
+    val status: Status,
     @Column(name = "date_shop")
     val dateShop: LocalDate,
     @OneToMany(fetch = FetchType.EAGER, cascade = [CascadeType.ALL], mappedBy = "shop")
     val items: List<ShopItem>
-)
+){
+    enum class Status(value:String) {
+        PENDING("PENDING"),
+        SHIPPED("SHIPPED"),
+        DELIVERED("DELIVERED"),
+        CANCELLED("CANCELLED");
+    }
+}

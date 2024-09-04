@@ -1,11 +1,11 @@
-package br.com.gabriel.shopvalidator
+package br.com.gabriel.shopValidator
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ShopApplication
+class ShopValidatorApplication
 
 fun main(args: Array<String>) {
-	runApplication<ShopApplication>(*args)
+	runApplication<ShopValidatorApplication>(*args)
 }

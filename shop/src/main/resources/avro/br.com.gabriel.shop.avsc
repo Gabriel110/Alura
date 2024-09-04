@@ -1,0 +1,52 @@
+{
+    "type": "record",
+    "name": "ShopAvro",
+    "namespace": "br.com.gabriel.shop",
+    "fields": [
+        {
+            "name": "identifier",
+            "type": "string"
+        },
+        {
+            "name": "status",
+            "type": {
+                "type": "enum",
+                "name": "StatusAvro",
+                "symbols": ["PENDING", "APPROVED", "DELIVERED", "CANCELLED"]
+            }
+        },
+        {
+            "name": "dateShop",
+            "type": "string",
+            "logicalType": "date"
+        },
+        {
+            "name": "itens",
+            "type": {
+                "type": "array",
+                "items": {
+                    "type": "record",
+                    "name": "ShopItemAvro",
+                    "fields": [
+                        {
+                            "name": "productIdentifier",
+                            "type": "string"
+                        },
+                        {
+                            "name": "amount",
+                            "type": "int"
+                        },
+                        {
+                            "name": "price",
+                            "type": "float"
+                        },
+                        {
+                            "name": "id",
+                            "type": "long"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

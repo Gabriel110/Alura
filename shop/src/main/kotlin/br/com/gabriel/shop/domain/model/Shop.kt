@@ -24,7 +24,7 @@ data class Shop(
 ){
     enum class Status(value:String) {
         PENDING("PENDING"),
-        SHIPPED("SHIPPED"),
+        APPROVED("APPROVED"),
         DELIVERED("DELIVERED"),
         CANCELLED("CANCELLED");
     }

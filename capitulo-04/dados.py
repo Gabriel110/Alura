@@ -2,7 +2,7 @@ import pandas as pd
 import os
 
 def carregar_cursos():
-    df = pd.read_csv(os.path.join(os.path.dirname(__file__), 'cursos.csv'))
+    df = pd.read_csv(os.path.join(os.path.dirname(__file__), 'buscas.csv'))
     X_df = df[['home','busca','logado']]
     Y_df = df['comprou']
     Xdumies_df = pd.get_dummies(X_df)
@@ -21,9 +21,8 @@ def tamanho_dados(x,y):
     return treino_dados, treino_marcadores, teste_dados, teste_macadores
    
 def calcula_taxa_de_acerto(resultado, teste_dados, marcadores_teste):
-    diferencaas = resultado - marcadores_teste
-    acertos = [d for d in diferencaas if d == 0]
-    total_de_aceros = len(acertos)
+    acertos = resultado == marcadores_teste
+    total_de_aceros = sum(acertos)
     total_delemento = len(teste_dados)
     taxa_de_acertos = 100.0 * total_de_aceros / total_delemento
-    return taxa_de_acertos
+    return taxa_de_acertos, total_delemento

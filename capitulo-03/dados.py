@@ -22,7 +22,7 @@ def carregar_cursos_v2():
     
     return Xdumies_df.values, Ydumies_df.values
 
-    
+   
 def calcula_taxa_de_acerto(resultado, teste_dados, marcadores_teste):
     diferencaas = resultado - marcadores_teste
     acertos = [d for d in diferencaas if d == 0]

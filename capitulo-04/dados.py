@@ -1,19 +1,7 @@
-import csv
 import pandas as pd
+import os
 
 def carregar_cursos():
-    X = []
-    Y = []
-    arquivo = open('cursos.csv', 'r')
-    leitor  = csv.reader(arquivo)
-    next(leitor)
-    for home, busca, logado, comprou in leitor:
-        dado = [int(home), busca, int(logado)]
-        X.append(dado)
-        Y.append(int(comprou))
-    return X, Y
-
-def carregar_cursos_v2():
     df = pd.read_csv(os.path.join(os.path.dirname(__file__), 'cursos.csv'))
     X_df = df[['home','busca','logado']]
     Y_df = df['comprou']
@@ -22,6 +10,15 @@ def carregar_cursos_v2():
     
     return Xdumies_df.values, Ydumies_df.values
 
+def tamanho_dados(x,y):
+    procentagem_treino = 0.9
+    tamanho_de_treino = int(procentagem_treino*len(y))
+    tamanho_de_teste = len(y) - tamanho_de_treino
+    treino_dados = x[:tamanho_de_treino]
+    treino_marcadores = y[:tamanho_de_treino]
+    teste_dados = x[-tamanho_de_teste:]
+    teste_macadores = y[-tamanho_de_teste:]
+    return treino_dados, treino_marcadores, teste_dados, teste_macadores
    
 def calcula_taxa_de_acerto(resultado, teste_dados, marcadores_teste):
     diferencaas = resultado - marcadores_teste
